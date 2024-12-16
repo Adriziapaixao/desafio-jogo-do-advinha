@@ -29,14 +29,14 @@ public class JogoAdvinha {
     
             do {
                 int numeroSorteado = random.nextInt(numeroMax) + 1;
-                System.out.println(numeroSorteado);
+                //System.out.println(numeroSorteado);
     
                 System.out.print("Digite seu palpite entre 1 a " + numeroMax + ": ");
                 int palpiteUsuaio = scr.nextInt();
     
-                int pontos = calcularPontos(numeroSorteado, palpiteUsuaio);
+                int pontos = calculePontos(numeroSorteado, palpiteUsuaio);
     
-                System.out.println(obterMensagem(numeroSorteado, palpiteUsuaio));    
+                System.out.println(obtenhaMensagem(numeroSorteado, palpiteUsuaio));
                 System.out.println("Numero Sorteado: " + numeroSorteado);
                 System.out.println("Pontos da rodada: " + pontos);
     
@@ -57,12 +57,12 @@ public class JogoAdvinha {
     
             System.out.println("Pontuação total: " + pontosUsuario);
             System.out.println("Números que você acertou : " + acertos);
-           System.out.println("Números que você aproximou : " + aproximados);
+            System.out.println("Números que você aproximou : " + aproximados);
             System.out.println("Números que você errou: " + erros);
             System.out.println("Obrigada pela participação!");
 
         } catch (Exception e) {
-           throw new RuntimeException(e);
+           System.out.println(e.getMessage());
        }
     }
 
@@ -73,22 +73,22 @@ public class JogoAdvinha {
             case 2 -> 50; //Médio
             case 3 -> 100; //Difícil
 
-            default -> throw new IllegalStateException("Tente novamente escolhendo entre os níveis (1. fácil, 2. médio e 3. difícil) : ");
+            default -> throw new IllegalStateException("Tente novamente escolhendo entre os níveis (1. fácil, 2. médio e 3. difícil): ");
         };
     }
 
-    private static int calcularPontos(int numeroSorteado, int palpiteUsuaio) {
+    private static int calculePontos(int numeroSorteado, int palpiteUsuario) {
         
-        if (palpiteUsuaio == numeroSorteado){
+        if (palpiteUsuario == numeroSorteado){
             return 10;
-        } else if (Math.abs(palpiteUsuaio - numeroSorteado) == 1) {
+        } else if (Math.abs(palpiteUsuario - numeroSorteado) == 1) {
             return 5;
         } else {
             return 0;
         }
     }
 
-    private static String obterMensagem(int numeroSorteado, int palpiteUsuario) {
+    private static String obtenhaMensagem(int numeroSorteado, int palpiteUsuario) {
         if (palpiteUsuario == numeroSorteado){
             return "Parabéns! Você acertou o número!";
         } else if (Math.abs(palpiteUsuario - numeroSorteado) == 1) {
